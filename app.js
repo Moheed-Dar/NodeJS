@@ -1,14 +1,8 @@
 const fs =require ('fs')
-const path =require ('path');
-const dirPath = path.join(__dirname,'files');
-//it is used for creating multiples files
-for(i=0;i<5;i++){
-fs.writeFileSync(dirPath+"/sonu"+i+".txt","a simple text files")
-// fs.writeFileSync(dirPath+`/data${i}.txt`,"a simple text files")
-}
-//it is used for  read files 
-fs.readdir(dirPath,(err,item)=>{
-  item.forEach((atom)=>{
-    console.log(atom)
-  })
-})
+const path = require('path');
+const dirPath=path.join(__dirname,'crud')
+const filePath = `${dirPath}/apple.txt`
+fs.writeFileSync(filePath,'this is the simple text file')
+// 2nd method for creating the file
+// fs.writeFileSync(`${dirPath}/index.txt`,"this is index file text")
+
