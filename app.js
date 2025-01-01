@@ -1,7 +1,6 @@
-console.log("start exc...")
-
+let a = 10;
+let b = 30;
 setTimeout(()=>{
-  console.log("logic exe..")
+  b=30;
 },2000)
-
-console.log("complele exe...")
+console.log(a+b)
