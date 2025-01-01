@@ -1,11 +1,12 @@
-let a = 10;
-let b = 30;
-
-let waitingData = new Promise((resolve, reject)=>{
-  setTimeout(()=>{
-    resolve(70)
-  },2000)
-})
-waitingData.then((b)=>{
-  console.log(a+b)
-})
+//Architecture of node js
+console.log("starting fucntion...")
+setTimeout(()=>{
+  console.log("second fucntion....")
+},2000)
+setTimeout(()=>{
+  console.log("third function....")
+},0)
+console.log("end function")
+// part 1 call stack 
+//part 2 nodejs
+// part 3 callback query
