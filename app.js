@@ -1,12 +1,13 @@
-//Architecture of node js
-console.log("starting fucntion...")
-setTimeout(()=>{
-  console.log("second fucntion....")
-},2000)
-setTimeout(()=>{
-  console.log("third function....")
-},0)
-console.log("end function")
-// part 1 call stack 
-//part 2 nodejs
-// part 3 callback query
+//express js
+ const express = require ('express');
+ const app = express();
+ app.get('',(req,resp)=>{
+  resp.send('hello, this is home page');
+ })
+ app.get('/about',(req,resp)=>{
+  resp.send('hello, this is about page');
+ })
+ app.get('/help',(req,resp)=>{
+  resp.send('hello, this is help page');
+ })
+ app.listen(5000)
