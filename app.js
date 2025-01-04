@@ -23,6 +23,9 @@ app.get ('/index',(_,resp)=>{
 app.get ('/helpmeplz',(_,resp)=>{
     resp.sendFile(`${publicPath}/help.html`)
 })
+app.get ('/login',(_,resp)=>{
+    resp.render('login')
+})
 app.get ('*',(_,resp)=>{
     resp.sendFile(`${publicPath}/pageerror.html`)
 })
