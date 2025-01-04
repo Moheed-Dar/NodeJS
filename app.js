@@ -1,13 +1,14 @@
 //express js
- const express = require ('express');
+ const express = require('express');
  const app = express();
  app.get('',(req,resp)=>{
-  resp.send('hello, this is home page');
+    console.log("data send by browser ",req.query.name)
+    resp.send("welcome , there this is  "+req.query.name);
  })
  app.get('/about',(req,resp)=>{
-  resp.send('hello, this is about page');
- })
+    resp.send("welcome, this is about; page")
+ });
  app.get('/help',(req,resp)=>{
-  resp.send('hello, this is help page');
- })
+    resp.send("welcome  , this is help; page")
+ });
  app.listen(5000)
