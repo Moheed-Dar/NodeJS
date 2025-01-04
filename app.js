@@ -1,30 +1,31 @@
 //express js
- const express = require('express');
- const app = express();
- app.get('',(req,resp)=>{
-   
-    resp.send(`<h2> hello this is home page</h2><a href="/about">Go to about page</a>`);
- })
- app.get('/about',(req,resp)=>{
-    resp.send(`
-         <input type="text" placeholder="username"value=" ${req.query.name}" /><br>
-         <button>Click me </button><br>
-         <a href="/">Go To Home Page</a>
+const express = require("express");
+const path = require("path");
 
-        `)
- });
- app.get('/help',(req,resp)=>{
-    resp.send([
-        {
-        name:'moheed',
-        class:'bsit',
-        email:'moheeddar324@gmail.com'
-    },
-    {
-        name:'saad',
-        class:'bscs',
-        email:'saad324@gmail.com'
+const app = express();
+const publicPath = path.join(__dirname, "public");
+app.set('view engine','ejs');
+//thats are statically pages
+app.get ('',(_,resp)=>{
+    resp.sendFile(`${publicPath}/about.html`)
+})
+app.get ('/profile',(_,resp)=>{
+    const user={
+        name:'moheed dar',
+        email:'moheeddar324@gmail.com',
+        contact:'instagram'
     }
-]);
-});
- app.listen(5000)
+   resp.render('profile',{user});
+})
+app.get ('/index',(_,resp)=>{
+    resp.sendFile(`${publicPath}/index.html`)
+})
+app.get ('/helpmeplz',(_,resp)=>{
+    resp.sendFile(`${publicPath}/help.html`)
+})
+app.get ('*',(_,resp)=>{
+    resp.sendFile(`${publicPath}/pageerror.html`)
+})
+//this is dynamically pages
+
+app.listen(5000);
