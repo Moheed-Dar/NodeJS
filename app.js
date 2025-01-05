@@ -1,34 +1,14 @@
-//express js
-const express = require("express");
-const path = require("path");
-
+const express = require('express');
 const app = express();
-const publicPath = path.join(__dirname, "public");
-app.set('view engine','ejs');
-//thats are statically pages
-app.get ('',(_,resp)=>{
-    resp.sendFile(`${publicPath}/about.html`)
-})
-app.get ('/profile',(_,resp)=>{
-    const user={
-        name:'moheed dar',
-        email:'moheeddar324@gmail.com',
-        contact:'instagram'
-    }
-   resp.render('profile',{user});
-})
-app.get ('/index',(_,resp)=>{
-    resp.sendFile(`${publicPath}/index.html`)
-})
-app.get ('/helpmeplz',(_,resp)=>{
-    resp.sendFile(`${publicPath}/help.html`)
-})
-app.get ('/login',(_,resp)=>{
-    resp.render('login')
-})
-app.get ('*',(_,resp)=>{
-    resp.sendFile(`${publicPath}/pageerror.html`)
-})
-//this is dynamically pages
-
-app.listen(5000);
+const reqFilter = (req,resp,next)=>{
+    console.log('reqFilter');
+    next();
+}
+app.use(reqFilter)
+ app.get('/',(req,resp)=>{
+    resp.send('<h1>welcome to home page</h1>')
+ })
+ app.get ('/user',(req,resp)=>{
+    resp.send('<h2>welcome to user page</h2>')
+ })
+app.listen(5000)
