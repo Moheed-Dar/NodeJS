@@ -1,23 +1,21 @@
-const express = require("express");
-const app = express();
-const reqFilter=require('./middle.js')
-const route = express.Router();
-// app.use(reqFilter);
-route.use(reqFilter);
-app.get("/", (req, resp) => {
-  resp.send("<h1>welcome to home page</h1>");
-});
-route.get("/user",  (req, resp) => {
-  resp.send("<h2>welcome to user page</h2>");
-});
- 
-route.get("/contact", (req, resp) => {
-  resp.send("<h2>welcome to contact page</h2>");
-});
-// single middleware app.get
-app.get("/detail", reqFilter, (req, resp) => {
-  resp.send("<h2>welcome to contact page</h2>");
-});
-//
- app.use('/',route);
-app.listen(5000);
+const { MongoClient } = require("mongodb");
+const url = "mongodb://localhost:27017";
+const client = new MongoClient(url);
+async function getData() {
+  let result = await client.connect();
+  let db = result.db("items");
+  let collection = db.collection("items");
+  let response = await collection.find({}).toArray();
+  console.log(response);
+}
+getData();
+// second database to fatch data
+async function doData()
+{
+  let result = await client.connect();
+  let db = result.db('Shop');
+  let collection = db.collection('items');
+  let response1 = await collection.find({}).toArray();
+  console.log(response1)
+}
+doData();
