@@ -1,21 +1,16 @@
-const { MongoClient } = require("mongodb");
-const url = "mongodb://localhost:27017";
-const client = new MongoClient(url);
-async function getData() {
-  let result = await client.connect();
-  let db = result.db("items");
-  let collection = db.collection("items");
-  let response = await collection.find({}).toArray();
-  console.log(response);
+const dbConnect = require('./mongodb')
+//method 1
+// dbConnect().then((resp)=>{
+//   resp.find({Sec:'B'}).toArray().then((data)=>{
+//     console.warn(data)
+//   })
+// })
+// console.warn(dbConnect())
+
+//method 2
+const main = async()=>{
+  let data = await dbConnect();
+  data = await data.find().toArray();
+  console.warn(data);
 }
-getData();
-// second database to fatch data
-async function doData()
-{
-  let result = await client.connect();
-  let db = result.db('Shop');
-  let collection = db.collection('items');
-  let response1 = await collection.find({}).toArray();
-  console.log(response1)
-}
-doData();
+main();
