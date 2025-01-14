@@ -11,18 +11,3 @@ const insert = async ()=>{
     }
 }
 insert();
-
-// method 2
-
-// const dbConnect = require('./mongodb');
-// const insert = async () => {
-//     const db = await dbConnect(); 
-//     const result = await db.insertOne({ 
-//         Name: 'hami',
-//         sec: 'B',
-//         dept: 'bsit',
-//         session: 'new',
-//     });
-//     console.log(result);
-// };
-// insert();
