@@ -7,9 +7,9 @@ const dbConnect = require('./mongodb')
 // })
 // console.warn(dbConnect())
 //method 2
-const main = async ()=>{
-  let data = await dbConnect();
-  data = await data.find().toArray();
-  console.warn(data);
+const readData = async()=>{
+ let data = await dbConnect();
+ data =await data.find().toArray();
+ console.log(data);
 }
-main();
+readData();
