@@ -1,15 +1,13 @@
-const dbConnect = require('./mongodb')
-//method 1
-// dbConnect().then((resp)=>{
-//   resp.find({Sec:'B'}).toArray().then((data)=>{
-//     console.warn(data)
-//   })
-// })
-// console.warn(dbConnect())
-//method 2
-const readData = async()=>{
- let data = await dbConnect();
- data =await data.find().toArray();
- console.log(data);
-}
-readData();
+const express = require('express');
+require('./config');
+const Product = require('./product');
+
+const app = express();
+app.use(express.json())
+app.post("/create",async (req,resp)=>{
+    let Data = new Product(req.body)
+    let result = await Data.save();
+    console.log(result)
+    resp.send(result);
+});
+app.listen(5000);
